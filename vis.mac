@@ -1,0 +1,136 @@
+# macro are in macro folder
+/control/macroPath macro
+
+################################################################################
+# change geometry collimator
+################################################################################
+/collimator/exist false
+/collimator/hole_length 30. mm
+/collimator/hole_thickness 15. mm
+/collimator/septa_thickness 5. mm
+/collimator/case_side 10. cm
+/collimator/positionX 0. mm
+/collimator/positionY 0. mm
+
+################################################################################
+# change geometry scintillator
+################################################################################
+/scintillator/exist true
+/scintillator/pixel matrix
+/scintillator/slab_side 10. cm
+/scintillator/slab_depth 3. cm
+/scintillator/scinti_pixel_size 20. mm
+
+################################################################################
+# change geometry detector
+################################################################################
+/detector/pixel matrix
+/detector/det_pixel_size 20. mm
+/detector/det_scinti_distance 10 mm
+/detector/fill_factor .8
+/detector/channel_dead_space 2. mm
+/detector/threshold 0
+
+################################################################################
+# change geometry moby
+################################################################################
+/moby/build no
+/moby/voxelX 430
+/moby/distance 0. mm
+
+################################################################################
+# reinitializeGeometry
+################################################################################
+/run/reinitializeGeometry
+
+# initalize if not done in the main
+/run/initialize
+
+################################################################################
+# change source
+################################################################################
+/particleSource/sourceType gun
+/gun/particle gamma
+/gun/energy 661 keV
+# /gps/particle ion
+# /gps/ion 47 111 0 0.
+# /gps/particle proton
+# /gps/energy 1. keV
+# position must be < 0 
+/gun/position 0 0. -1. mm
+/gun/direction 0 0 1
+# /gps/ang/type iso
+/control/alias zDepth 15
+/gps/pos/centre 0. 0. -{zDepth} mm
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/halfx 50 mm
+/gps/pos/halfy 50 mm
+/gps/pos/halfz {zDepth} mm
+
+# muon
+#/gun/particle mu-
+#/gun/energy 3 GeV
+#/gun/position -75 -75 47.7 mm
+#/gun/direction 1 1 0
+
+################################################################################
+# other visualization settings
+################################################################################
+
+# tell Geant4 to show the scene
+/vis/open OGL
+
+# decide the initial position of the detector
+/vis/viewer/set/viewpointVector -1 0 -2
+/vis/viewer/set/lightsVector -1 0 0
+
+# Specify style (surface, wireframe, auxiliary edges,...)
+/vis/viewer/set/style surface
+/vis/viewer/set/hiddenEdge true
+# /vis/viewer/set/style wireframe
+# /vis/viewer/set/auxiliaryEdge true
+# /vis/viewer/set/lineSegmentsPerCircle 100
+/vis/viewer/colourByDensity 1 g/cm3 0.0001 1.5 12
+/vis/geometry/set/visibility logicWorld 0 false
+
+# tell Geant4 to draw the volumes
+/vis/drawVolume
+
+# tell Geant4 to update every time it creates an event
+/vis/viewer/set/autoRefresh true
+
+# tell Geant4 to draw the trajectories of the particles
+/vis/scene/add/trajectories smooth
+
+# insert a scale that is 10 cm long in our program
+# /vis/scene/add/scale 10 cm
+
+# add a coordinate system
+# /vis/scene/add/axes
+
+# always shows which event is just generated, for debugging
+/vis/scene/add/eventID
+
+# tell Geant4 to draw all the events without deleting the previous ones
+/vis/scene/endOfEventAction accumulate
+
+# Frame
+/vis/set/colour red
+/vis/set/lineWidth 2
+/vis/scene/add/frame   # Simple frame around the view
+/vis/set/colour        # Revert to default colour (white)
+/vis/set/lineWidth     # Revert to default line width (1.)
+
+# Set file name
+/analysis/setFileName output.root
+
+# set tuples activation
+/analysis/ntuple/setActivation 5 False
+
+# reduce scintillation yield to allow visualization
+/process/optical/scintillation/setYieldFactor .001
+
+# color first gamma
+/vis/modeling/trajectories/create/drawByParticleID
+/vis/modeling/trajectories/drawByParticleID-0/set gamma blue
