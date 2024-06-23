@@ -3,6 +3,7 @@
 #define CONSTRUCTION_HH
 
 #include "G4VUserDetectorConstruction.hh"
+#include "G4Box.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
