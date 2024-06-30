@@ -26,13 +26,6 @@ public:
 	virtual void GeneratePrimaries(G4Event*);
 
 private:
-	void SaveVertexPosition(G4ThreeVector);
-	G4ThreeVector GenerateParticlePositionMOBY();
-	G4GeneralParticleSource* fParticleGPS;
-	G4ParticleGun* fParticleGun;
-	G4GenericMessenger *fMessengerParticleSource;
-	G4String sourceType;
-	TH3F* fHisto;
 };
 
 #endif
