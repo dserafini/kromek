@@ -19,7 +19,7 @@ void MyDetectorConstruction::DefineMaterials()
 	G4cout << "MyDetectorConstruction::DefineMaterials" << G4endl;
 	G4NistManager *nist = G4NistManager::Instance();
 
-	materialAir      = nist->FindOrBuildMaterial("G4_AIR");
+	G4Material* materialAir      = nist->FindOrBuildMaterial("G4_AIR");
 }
 
 
