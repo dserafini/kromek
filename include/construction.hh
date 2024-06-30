@@ -33,6 +33,7 @@ private:
 	//case
 	G4Box *solidCztCase;
 	G4LogicalVolume *logicCztCase;
+	G4Material* materialCztCase;
 	// crystal
 	G4Box *solidCztCrystal;
 	G4LogicalVolume *logicCztCrystal;
