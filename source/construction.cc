@@ -28,6 +28,9 @@ void MyDetectorConstruction::DefineMaterials()
 	materialCztCrystal->AddElement(nist->FindOrBuildElement("Cd"), 1);
 	materialCztCrystal->AddElement(nist->FindOrBuildElement("Zn"), 1);
 	materialCztCrystal->AddElement(nist->FindOrBuildElement("Te"), 1);
+
+	// flange
+	materialFlange = nist->FindOrBuildMaterial("G4_STAINLESS-STEEL");
 }
 
 void MyDetectorConstruction::ConstructCzt()
