@@ -22,14 +22,14 @@ void MyDetectorConstruction::ConstructCzt()
 	// kromek czt case
 	G4double cztCaseHalfXY = .7 * cm;
 	G4double cztCaseHalfZ = 3 * cm;
-	G4Box *solidCztCase = new G4Box('solidCztCase', cztCaseHalfXY, cztCaseHalfXY, cztCaseHalfZ);
-	G4LogicalVolume *logicCztCase = new G4LogicalVolume(solidCztCase, materialAir, 'logicCztCase', 0, 0, 0, true);
+	solidCztCase = new G4Box('solidCztCase', cztCaseHalfXY, cztCaseHalfXY, cztCaseHalfZ);
+	logicCztCase = new G4LogicalVolume(solidCztCase, materialAir, 'logicCztCase', 0, 0, 0, true);
 	new G4PVPlacement(0, G4ThreeVector(), logicCztCase, "physCztCrystal", logicWorld, false, 0, true);
 
 	// czt crystal
 	G4double cztCrystalHalfXYZ = .5 * cm;
-	G4Box *solidCztCrystal = new G4Box('solidCztCrystal', cztCrystalHalfXYZ, cztCrystalHalfXYZ, cztCrystalHalfXYZ);
-	G4LogicalVolume *logicCztCrystal = new G4LogicalVolume(solidCztCrystal, materialAir, 'logicCztCrystal', 0, 0, 0, true);
+	solidCztCrystal = new G4Box('solidCztCrystal', cztCrystalHalfXYZ, cztCrystalHalfXYZ, cztCrystalHalfXYZ);
+	logicCztCrystal = new G4LogicalVolume(solidCztCrystal, materialAir, 'logicCztCrystal', 0, 0, 0, true);
 	new G4PVPlacement(0, G4ThreeVector(), logicCztCrystal, "physCztCrystal", logicCztCase, false, 0, true);
 }
 
