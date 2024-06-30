@@ -20,6 +20,7 @@ public:
 private:
 	virtual void ConstructSDandField();
 	void DefineMaterials();
+	G4Material* materialAir;
 };
 
 #endif
