@@ -22,7 +22,6 @@
 /gun/position 0 0. -1. mm
 /gun/direction 0 0 1
 # /gps/ang/type iso
-/control/alias zDepth 15
 
 # muon
 #/gun/particle mu-
@@ -47,8 +46,8 @@
 # /vis/viewer/set/style wireframe
 # /vis/viewer/set/auxiliaryEdge true
 # /vis/viewer/set/lineSegmentsPerCircle 100
-/vis/viewer/colourByDensity 1 g/cm3 0.0001 1.5 12
-/vis/geometry/set/visibility logicWorld 0 false
+# /vis/viewer/colourByDensity 1 g/cm3 0.0001 1.5 12
+# /vis/geometry/set/visibility logicWorld 0 false
 
 # tell Geant4 to draw the volumes
 /vis/drawVolume
@@ -60,10 +59,10 @@
 /vis/scene/add/trajectories smooth
 
 # insert a scale that is 10 cm long in our program
-# /vis/scene/add/scale 10 cm
+/vis/scene/add/scale 10 cm
 
 # add a coordinate system
-# /vis/scene/add/axes
+/vis/scene/add/axes
 
 # always shows which event is just generated, for debugging
 /vis/scene/add/eventID
@@ -80,8 +79,3 @@
 
 # Set file name
 /analysis/setFileName output.root
-/analysis/ntuple/setActivation 5 False
-
-# color first gamma
-/vis/modeling/trajectories/create/drawByParticleID
-/vis/modeling/trajectories/drawByParticleID-0/set gamma blue
