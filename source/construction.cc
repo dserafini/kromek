@@ -31,6 +31,9 @@ void MyDetectorConstruction::DefineMaterials()
 
 	// material flange
 	materialFlange = nist->FindOrBuildMaterial("G4_STAINLESS-STEEL");
+
+	// material source
+	materialSource = materialAir;
 }
 
 void MyDetectorConstruction::ConstructCzt()
@@ -62,6 +65,14 @@ void MyDetectorConstruction::ConstructFlange()
 	new G4PVPlacement(0, flangePosition, logicFlange, 'physFlange', logicWorld, false, 0, true);
 }
 
+void MyDetectorConstruction::ConstructSource()
+{
+	// construct source
+	solidSource = new G4Orb('solidSource', .5 * mm);
+	logicSource = new G4LogicalVolume(solidSource, materialSource);
+	physSource = new G4PVPlacement(0, G4ThreeVector(), logicSource, 'physSource', logicWorld, false, 0, true);
+}
+
 G4VPhysicalVolume* MyDetectorConstruction::Construct()
 {
 	G4cout << "MyDetectorConstruction::Construct" << G4endl;
@@ -78,6 +89,8 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 	ConstructCzt();
 	
 	ConstructFlange();
+
+	ConstructSource();
 	
 	return physWorld;
 }
