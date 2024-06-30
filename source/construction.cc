@@ -22,6 +22,7 @@ void MyDetectorConstruction::DefineMaterials()
 G4VPhysicalVolume* MyDetectorConstruction::Construct()
 {
 	G4cout << "MyDetectorConstruction::Construct" << G4endl;
+	DefineMaterials();
 	G4double world_half_Z  = 10*cm;
 	G4double world_half_XY = 10*cm;
 
