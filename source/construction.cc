@@ -105,6 +105,6 @@ void MyDetectorConstruction::ConstructSDandField()
 	{
 		MySensitiveDetector *sensDet = new MySensitiveDetector("SensitiveDetector","SensitiveDetectorHitsCollection");
 		G4SDManager::GetSDMpointer()->AddNewDetector(sensDet);
-		fScoringDetector->SetSensitiveDetector(sensDet);
+		logicCztCrystal->SetSensitiveDetector(sensDet);
 	}
 }
