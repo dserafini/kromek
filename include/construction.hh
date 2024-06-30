@@ -6,6 +6,8 @@
 #include "G4Box.hh"
 #include "G4NistManager.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4VPhysicalVolume.hh"
+#include "G4LogicalVolume.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
