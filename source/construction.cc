@@ -100,4 +100,11 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 void MyDetectorConstruction::ConstructSDandField()
 {
 	G4cout << "MyDetectorConstruction::ConstructSDandField" << G4endl;
+
+	if(logicCztCrystal != NULL)
+	{
+		MySensitiveDetector *sensDet = new MySensitiveDetector("SensitiveDetector","SensitiveDetectorHitsCollection");
+		G4SDManager::GetSDMpointer()->AddNewDetector(sensDet);
+		fScoringDetector->SetSensitiveDetector(sensDet);
+	}
 }
