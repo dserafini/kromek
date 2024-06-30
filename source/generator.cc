@@ -3,7 +3,7 @@
 MyPrimaryGenerator::MyPrimaryGenerator()
 {
 	G4cout << "MyPrimaryGenerator::MyPrimaryGenerator" << G4endl;
-	fParticleGun = 0;
+	fParticleGun = new G4ParticleGun();
 }
 
 MyPrimaryGenerator::~MyPrimaryGenerator()
@@ -13,5 +13,5 @@ MyPrimaryGenerator::~MyPrimaryGenerator()
 
 void MyPrimaryGenerator::GeneratePrimaries(G4Event *anEvent)
 {
-	fParticleGun->GeneratePrimaryVertex();
+	fParticleGun->GeneratePrimaryVertex(anEvent);
 }
