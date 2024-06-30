@@ -74,6 +74,8 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 	
 	ConstructCzt();
 	
+	ConstructFlange();
+	
 	return physWorld;
 }
 
