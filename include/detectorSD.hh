@@ -14,12 +14,15 @@ public:
 	MySensitiveDetector(G4String, const G4String&);
 	~MySensitiveDetector();
 	void Initialize(G4HCofThisEvent* hitCollection) override;
+	void SetEdep(G4double de) { fEdep = de; };
+	G4double GetEdep() const { return fEdep; };
 
 private:
 	G4bool ProcessHits(G4Step*, G4TouchableHistory*) override;
 	void EndOfEvent(G4HCofThisEvent* hitCollection) override;
 	
 	detectorHitsCollection* fHitsCollection;
+	G4double      fEdep = 0.;
 };
 
 #endif
