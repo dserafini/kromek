@@ -1,9 +1,5 @@
 #include "construction.hh"
 
-G4double HalfVoxelSize;
-G4double HalfPhantomDepth;
-G4double mouseCollimatorDistance;
-
 MyDetectorConstruction::MyDetectorConstruction()
 {
 	G4cout << "MyDetectorConstruction::MyDetectorConstruction" << G4endl;
