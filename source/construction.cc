@@ -41,8 +41,8 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 	G4double world_half_Z  = 10*cm;
 	G4double world_half_XY = 10*cm;
 
-	G4LogicalVolume* logicWorld;
-	G4VPhysicalVolume* physWorld;
+	logicWorld;
+	physWorld;
 
 	if (materialAir)
 	{
