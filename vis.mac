@@ -2,43 +2,6 @@
 /control/macroPath macro
 
 ################################################################################
-# change geometry collimator
-################################################################################
-/collimator/exist false
-/collimator/hole_length 30. mm
-/collimator/hole_thickness 15. mm
-/collimator/septa_thickness 5. mm
-/collimator/case_side 10. cm
-/collimator/positionX 0. mm
-/collimator/positionY 0. mm
-
-################################################################################
-# change geometry scintillator
-################################################################################
-/scintillator/exist true
-/scintillator/pixel matrix
-/scintillator/slab_side 10. cm
-/scintillator/slab_depth 3. cm
-/scintillator/scinti_pixel_size 20. mm
-
-################################################################################
-# change geometry detector
-################################################################################
-/detector/pixel matrix
-/detector/det_pixel_size 20. mm
-/detector/det_scinti_distance 10 mm
-/detector/fill_factor .8
-/detector/channel_dead_space 2. mm
-/detector/threshold 0
-
-################################################################################
-# change geometry moby
-################################################################################
-/moby/build no
-/moby/voxelX 430
-/moby/distance 0. mm
-
-################################################################################
 # reinitializeGeometry
 ################################################################################
 /run/reinitializeGeometry
@@ -124,8 +87,6 @@
 
 # Set file name
 /analysis/setFileName output.root
-
-# set tuples activation
 /analysis/ntuple/setActivation 5 False
 
 # reduce scintillation yield to allow visualization
