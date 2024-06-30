@@ -40,7 +40,7 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 
 	cztbox = new G4Box("solidCzt", 1*cm, 1*cm, 2*cm);
 	G4LogicalVolume* logicCzt = new G4LogicalVolume(cztbox, materialAir, "logicCzt", 0, 0, 0, true);
-	new G4PVPlacement(0, G4ThreeVector(), logicCzt, "physCzt", 0, false, 0, true);
+	new G4PVPlacement(0, G4ThreeVector(), logicCzt, "physCzt", logicWorld, false, 0, true);
 	
 	return physWorld;
 }
