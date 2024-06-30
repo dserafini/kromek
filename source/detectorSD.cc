@@ -28,7 +28,11 @@ G4bool MySensitiveDetector::ProcessHits(G4Step*, G4TouchableHistory*)
 {
   G4cout << "MySensitiveDetector::ProcessHits" << G4endl;
   
+  // energy deposit
+  G4double edep = aStep->GetTotalEnergyDeposit(); // [keV]
+  
   auto newHit = new detectorHit();
+  newHit->SetEdep(edep);
 
   if (fHitsCollection)
     fHitsCollection->insert( newHit );
@@ -44,9 +48,16 @@ void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
   
   G4int nofHits = fHitsCollection->entries();
   if ( verboseLevel>1 ) {
-     G4cout << G4endl
-            << "-------->Hits Collection: in this event they are " << nofHits
-            << " hits in the SiPM detector: " << G4endl;
-     for ( G4int i=0; i<nofHits; i++ ) (*fHitsCollection)[i]->Print();
+    G4cout << G4endl
+    << "-------->Hits Collection: in this event they are " << nofHits
+    << " hits in the SiPM detector: " << G4endl;
+    for ( G4int i=0; i<nofHits; i++ ) (*fHitsCollection)[i]->Print();
   }
+
+  G4double totalEdep = 0.;
+  for ( G4int i=0; i<nofHits; i++ )
+  {
+    totalEdep += (*fHitsCollection)[i]->GetEdep();
+  }
+  man->FillNtupleDColumn(0, 0, totalEdep / keV); // [keV]
 }
