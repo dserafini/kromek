@@ -50,7 +50,6 @@ private:
 	void ConstructSource();
 	G4Orb *solidSource;
 	G4LogicalVolume *logicSource;
-	G4PhysicalVolume *physSource;
 	G4Material *materialSource;
 };
 
