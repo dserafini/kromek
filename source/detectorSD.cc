@@ -60,4 +60,5 @@ void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
     totalEdep += (*fHitsCollection)[i]->GetEdep();
   }
   man->FillNtupleDColumn(0, 0, totalEdep / keV); // [keV]
+  man->AddNtupleRow(0);
 }
