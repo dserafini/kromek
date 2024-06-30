@@ -23,6 +23,7 @@ private:
 	virtual void ConstructSDandField();
 	void DefineMaterials();
 	G4Material* materialAir;
+	G4Box* cztbox;
 };
 
 #endif
