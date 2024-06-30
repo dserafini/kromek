@@ -22,11 +22,20 @@ public:
 private:
 	virtual void ConstructSDandField();
 	void DefineMaterials();
+
+	// world
 	G4LogicalVolume* logicWorld;
 	G4VPhysicalVolume* physWorld;
-	void ConstructCzt();
 	G4Material* materialAir;
-	G4Box* cztbox;
+
+	// czt
+	void ConstructCzt();
+	//case
+	G4Box *solidCztCase;
+	G4LogicalVolume *logicCztCase;
+	// crystal
+	G4Box *solidCztCrystal;
+	G4LogicalVolume *logicCztCrystal;
 };
 
 #endif
