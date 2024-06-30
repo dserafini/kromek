@@ -36,6 +36,7 @@ private:
 	// crystal
 	G4Box *solidCztCrystal;
 	G4LogicalVolume *logicCztCrystal;
+	G4Material* materialCztCrystal;
 };
 
 #endif
