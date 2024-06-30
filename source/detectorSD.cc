@@ -24,7 +24,7 @@ void MySensitiveDetector::Initialize(G4HCofThisEvent* hce)
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-G4bool MySensitiveDetector::ProcessHits(G4Step*, G4TouchableHistory*)
+G4bool MySensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory*)
 {
   G4cout << "MySensitiveDetector::ProcessHits" << G4endl;
   
