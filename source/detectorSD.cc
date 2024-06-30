@@ -59,6 +59,8 @@ void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
   {
     totalEdep += (*fHitsCollection)[i]->GetEdep();
   }
+
+  G4AnalysisManager *man = G4AnalysisManager::Instance();
   man->FillNtupleDColumn(0, 0, totalEdep / keV); // [keV]
   man->AddNtupleRow(0);
 }
