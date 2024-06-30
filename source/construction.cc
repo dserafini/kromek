@@ -49,6 +49,15 @@ void MyDetectorConstruction::ConstructCzt()
 	new G4PVPlacement(0, cztCrystalPosition, logicCztCrystal, "physCztCrystal", logicCztCase, false, 0, true);
 }
 
+void MyDetectorConstruction::ConstructFlange()
+{
+	// flange
+	G4double flangeDistance = 5.4 * cm;
+	G4ThreeVector flangePosition = G4ThreeVector(0, 0, flangeDistance);
+	solidFlange = new G4Tubs('solidFlange', 0 * cm, 6.5 * cm, .55 * cm, 0 * deg, 360 * deg);
+	logicFlange = new G4LogicalVolume(solidFlange, materialFlange, 'logicFlange', 0, 0, 0, true);
+	new G4PVPlacement(0, flangePosition, logicFlange, 'physFlange', logicWorld, false, 0, true);
+}
 
 G4VPhysicalVolume* MyDetectorConstruction::Construct()
 {
