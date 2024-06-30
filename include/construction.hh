@@ -10,6 +10,7 @@
 #include "G4SystemOfUnits.hh"
 #include "G4LogicalVolume.hh"
 #include "G4PVPlacement.hh"
+#include "detectorSD.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
