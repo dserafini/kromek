@@ -30,7 +30,7 @@ void MyDetectorConstruction::ConstructCzt()
 
 	// czt crystal
 	G4double cztCrystalHalfXYZ = .5 * cm;
-	G4ThreeVector cztCrystalPosition = G4ThreeVector(0, 0, 1 * cm);
+	G4ThreeVector cztCrystalPosition = G4ThreeVector(0, 0, -1 * cm);
 	solidCztCrystal = new G4Box('solidCztCrystal', cztCrystalHalfXYZ, cztCrystalHalfXYZ, cztCrystalHalfXYZ);
 	logicCztCrystal = new G4LogicalVolume(solidCztCrystal, materialAir, 'logicCztCrystal', 0, 0, 0, true);
 	new G4PVPlacement(0, cztCrystalPosition, logicCztCrystal, "physCztCrystal", logicCztCase, false, 0, true);
