@@ -6,8 +6,7 @@ MyDetectorConstruction::MyDetectorConstruction()
 }
 
 MyDetectorConstruction::~MyDetectorConstruction()
-{
-}
+{}
 
 // to define material only once
 void MyDetectorConstruction::DefineMaterials()
@@ -16,6 +15,22 @@ void MyDetectorConstruction::DefineMaterials()
 	G4NistManager *nist = G4NistManager::Instance();
 
 	materialAir = nist->FindOrBuildMaterial("G4_AIR");
+}
+
+void MyDetectorConstruction::ConstructCzt()
+{
+	// kromek czt case
+	cztCaseHalfXY = .7 * cm;
+	cztCaseHalfZ = 3 * cm;
+	G4Box *solidCztCase = new G4Box('solidCztCase', cztCaseHalfXY, cztCaseHalfXY, cztCaseHalfZ);
+	G4LogicalVolume *logicCztCase = new G4LogicalVolume(solidCztCase, materialAir, 'logicCztCase', 0, 0, 0, true);
+	new G4PVPlacement(0, G4ThreeVector(), logicCztCase, "physCztCrystal", logicWorld, false, 0, true);
+
+	// czt crystal
+	cztCrystalHalfXYZ = .5 * cm;
+	G4Box *solidCztCrystal = new G4Box('solidCztCrystal', cztCrystalHalfXYZ, cztCrystalHalfXYZ, cztCrystalHalfXYZ);
+	G4LogicalVolume *logicCztCrystal = new G4LogicalVolume(solidCztCrystal, materialAir, 'logicCztCrystal', 0, 0, 0, true);
+	new G4PVPlacement(0, G4ThreeVector(), logicCztCrystal, "physCztCrystal", logicCztCase, false, 0, true);
 }
 
 
@@ -38,10 +53,8 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 	}
 	else
 		G4cout << "non c'è aria" << G4endl;
-
-	cztbox = new G4Box("solidCzt", 1*cm, 1*cm, 2*cm);
-	G4LogicalVolume* logicCzt = new G4LogicalVolume(cztbox, materialAir, "logicCzt", 0, 0, 0, true);
-	new G4PVPlacement(0, G4ThreeVector(), logicCzt, "physCzt", logicWorld, false, 0, true);
+	
+	ConstructCzt();
 	
 	return physWorld;
 }
