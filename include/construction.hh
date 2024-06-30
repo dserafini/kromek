@@ -5,6 +5,7 @@
 #include "G4VUserDetectorConstruction.hh"
 #include "G4Box.hh"
 #include "G4NistManager.hh"
+#include "G4SystemOfUnits.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
