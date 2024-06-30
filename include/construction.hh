@@ -38,6 +38,11 @@ private:
 	G4Box *solidCztCrystal;
 	G4LogicalVolume *logicCztCrystal;
 	G4Material* materialCztCrystal;
+
+	// flange
+	G4Tubs *solidFlange;
+	G4LogicalVolume *logicFlange;
+	G4Material *materialFlange;
 };
 
 #endif
