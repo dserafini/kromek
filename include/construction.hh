@@ -40,6 +40,7 @@ private:
 	G4Material* materialCztCrystal;
 
 	// flange
+	void ConstructFlange();
 	G4Tubs *solidFlange;
 	G4LogicalVolume *logicFlange;
 	G4Material *materialFlange;
