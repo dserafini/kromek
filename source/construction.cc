@@ -69,7 +69,7 @@ void MyDetectorConstruction::ConstructSource()
 {
 	// construct source
 	solidSource = new G4Orb('solidSource', .5 * mm);
-	logicSource = new G4LogicalVolume(solidSource, materialSource);
+	logicSource = new G4LogicalVolume(solidSource, materialSource, 'logicSource', 0, 0, 0, true);
 	new G4PVPlacement(0, G4ThreeVector(), logicSource, 'physSource', logicWorld, false, 0, true);
 }
 
