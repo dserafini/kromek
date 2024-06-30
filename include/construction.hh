@@ -17,6 +17,7 @@ public:
 
 private:
 	virtual void ConstructSDandField();
+	void DefineMaterials();
 };
 
 #endif
