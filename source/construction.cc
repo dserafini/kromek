@@ -41,9 +41,6 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 	G4double world_half_Z  = 10*cm;
 	G4double world_half_XY = 10*cm;
 
-	logicWorld;
-	physWorld;
-
 	if (materialAir)
 	{
 		G4cout << "c'è aria" << G4endl;
