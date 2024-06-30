@@ -16,26 +16,26 @@ void MyDetectorConstruction::DefineMaterials()
 
 	materialAir = nist->FindOrBuildMaterial("G4_AIR");
 
-	// aluminium
+	// material aluminium
 	G4Material* materialAl = new G4Material("Al", 2.699 * g/cm3, 1);
 	materialAl->AddElement(nist->FindOrBuildElement("Al"), 1);
 
-	// czt case
+	// material czt case
 	materialCztCase = (G4Material*) materialAl;
 
-	// czt crystal
+	// material czt crystal
 	materialCztCrystal = new G4Material("czt",  5.605 * g/cm3, 3);
 	materialCztCrystal->AddElement(nist->FindOrBuildElement("Cd"), 1);
 	materialCztCrystal->AddElement(nist->FindOrBuildElement("Zn"), 1);
 	materialCztCrystal->AddElement(nist->FindOrBuildElement("Te"), 1);
 
-	// flange
+	// material flange
 	materialFlange = nist->FindOrBuildMaterial("G4_STAINLESS-STEEL");
 }
 
 void MyDetectorConstruction::ConstructCzt()
 {
-	// kromek czt case
+	// construct kromek czt case
 	G4double cztCaseHalfXY = .7 * cm;
 	G4double cztCaseHalfZ = 3 * cm;
 	G4double cztWindowDistance = 9 * cm;
@@ -44,7 +44,7 @@ void MyDetectorConstruction::ConstructCzt()
 	logicCztCase = new G4LogicalVolume(solidCztCase, materialCztCase, 'logicCztCase', 0, 0, 0, true);
 	new G4PVPlacement(0, cztCasePosition, logicCztCase, "physCztCrystal", logicWorld, false, 0, true);
 
-	// czt crystal
+	// construct czt crystal
 	G4double cztCrystalHalfXYZ = .5 * cm;
 	G4ThreeVector cztCrystalPosition = G4ThreeVector(0, 0, -1 * cm);
 	solidCztCrystal = new G4Box('solidCztCrystal', cztCrystalHalfXYZ, cztCrystalHalfXYZ, cztCrystalHalfXYZ);
@@ -54,7 +54,7 @@ void MyDetectorConstruction::ConstructCzt()
 
 void MyDetectorConstruction::ConstructFlange()
 {
-	// flange
+	// construct flange
 	G4double flangeDistance = 5.4 * cm;
 	G4ThreeVector flangePosition = G4ThreeVector(0, 0, flangeDistance);
 	solidFlange = new G4Tubs('solidFlange', 0 * cm, 6.5 * cm, .55 * cm, 0 * deg, 360 * deg);
@@ -68,7 +68,7 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 	
 	DefineMaterials();
 
-	// world
+	// construct world
 	G4double world_half_Z  = 10*cm;
 	G4double world_half_XY = 10*cm;
 	G4Box* solidWorld = new G4Box("solidWorld", world_half_XY, world_half_XY, world_half_Z);
