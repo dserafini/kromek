@@ -22,6 +22,8 @@ public:
 private:
 	virtual void ConstructSDandField();
 	void DefineMaterials();
+	G4LogicalVolume* logicWorld;
+	G4VPhysicalVolume* physWorld;
 	void ConstructCzt();
 	G4Material* materialAir;
 	G4Box* cztbox;
