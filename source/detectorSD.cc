@@ -38,7 +38,7 @@ G4bool MySensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory*)
     fHitsCollection->insert( newHit );
 
   // step 
-  newHit->SetPosition(aStep->GetPreStepPoint()->GetPosition());
+  newHit->SetPos(aStep->GetPreStepPoint()->GetPosition());
   
   return true;
 }
@@ -64,7 +64,7 @@ void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
   {
     partEdep = (*fHitsCollection)[i]->GetEdep();
     totalEdep += partEdep;
-    totalStep += (*fHitsCollection)[i]->GetPosition() * partEdep;
+    totalStep += (*fHitsCollection)[i]->GetPos() * partEdep;
   }
   
   // normalize fPosition on total energy deposit
