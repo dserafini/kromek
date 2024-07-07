@@ -8,7 +8,7 @@ MyRunAction::MyRunAction()
   G4AnalysisManager *man = G4AnalysisManager::Instance();
 
   man->CreateNtuple("Events", "Events");
-  man->CreateNtuple("Scintillator", "Scintillator");
+  man->CreateNtuple("Detector", "Detector");
 
   // number of generated events
   man->CreateNtupleIColumn(Tuples::kEvents, "gEvents"); // [1]
