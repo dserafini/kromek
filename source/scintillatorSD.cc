@@ -45,12 +45,5 @@ void MySensitiveScintillator::EndOfEvent(G4HCofThisEvent*)
   // G4cout << "Energy deposited: " << fEdep/keV << " keV" << G4endl;
   // G4cout << "Position: " << fPosition << " keV" << G4endl;
   
-  G4AnalysisManager *man = G4AnalysisManager::Instance();
-  
-  man->FillNtupleDColumn(Tuples::kScintillator, TScintillator::kEdep, fEdep/keV); // [keV]
-  man->FillNtupleDColumn(Tuples::kScintillator, TScintillator::kGammaX, fPosition.getX()/mm); // [mm]
-  man->FillNtupleDColumn(Tuples::kScintillator, TScintillator::kGammaY, fPosition.getY()/mm);
-  man->FillNtupleDColumn(Tuples::kScintillator, TScintillator::kGammaZ, fPosition.getZ()/mm);
-  
   return;
 }
