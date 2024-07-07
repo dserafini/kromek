@@ -60,8 +60,6 @@ void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
   G4double totalEdep = 0.;
   G4double partEdep = 0.;
   G4ThreeVector totalStep = G4ThreeVector();
-  G4ThreeVector delta = aStep->GetPreStepPoint()->GetPosition() * edep;
-  fPosition += delta;
   for ( G4int i=0; i<nofHits; i++ )
   {
     partEdep = (*fHitsCollection)[i]->GetEdep();
