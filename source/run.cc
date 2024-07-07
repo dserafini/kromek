@@ -7,15 +7,20 @@ MyRunAction::MyRunAction()
   // u can create the tuple here just one time
   G4AnalysisManager *man = G4AnalysisManager::Instance();
 
-  // want to save energy deposition
+  man->CreateNtuple("Events", "Events");
   man->CreateNtuple("Scintillator", "Scintillator");
 
-  // scintillator
-  man->CreateNtupleDColumn(0, "fEdep"); // [eV]
-  man->CreateNtupleDColumn(0, "fX"); // [mm]
-  man->CreateNtupleDColumn(0, "fY"); // [mm]
-  man->CreateNtupleDColumn(0, "fZ"); // [mm]
-  man->FinishNtuple(0);
+  // number of generated events
+  man->CreateNtupleIColumn(Tuples::kEvents, "gEvents"); // [1]
+
+  // detector
+  man->CreateNtupleDColumn(Tuples::kDetector, "fEdep"); // [eV]
+  man->CreateNtupleDColumn(Tuples::kDetector, "fX"); // [mm]
+  man->CreateNtupleDColumn(Tuples::kDetector, "fY"); // [mm]
+  man->CreateNtupleDColumn(Tuples::kDetector, "fZ"); // [mm]
+  
+  man->FinishNtuple(Tuples::kEvents);
+  man->FinishNtuple(Tuples::kDetector);
 }
 
 MyRunAction::~MyRunAction()
