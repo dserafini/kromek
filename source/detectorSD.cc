@@ -69,12 +69,12 @@ void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
   
   // normalize fPosition on total energy deposit
   if (totalEdep > 0)
-    fPosition /= totalEdep;
+    fPos /= totalEdep;
 
   G4AnalysisManager *man = G4AnalysisManager::Instance();
   man->FillNtupleDColumn(Tuples::kDetector, TDetector::kEdep, totalEdep / keV); // [keV]
-  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaX, fPosition.getX() / mm); // [mm]
-  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaY, fPosition.getY() / mm);
-  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaZ, fPosition.getZ() / mm);
+  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaX, fPos.getX() / mm); // [mm]
+  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaY, fPos.getY() / mm);
+  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaZ, fPos.getZ() / mm);
   man->AddNtupleRow(Tuples::kDetector);
 }
