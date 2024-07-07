@@ -59,22 +59,22 @@ void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
 
   G4double totalEdep = 0.;
   G4double partEdep = 0.;
-  G4ThreeVector totalStep = G4ThreeVector();
+  G4ThreeVector averagePosition = G4ThreeVector();
   for ( G4int i=0; i<nofHits; i++ )
   {
     partEdep = (*fHitsCollection)[i]->GetEdep();
     totalEdep += partEdep;
-    totalStep += (*fHitsCollection)[i]->GetPos() * partEdep;
+    averagePosition += (*fHitsCollection)[i]->GetPos() * partEdep;
   }
   
   // normalize fPosition on total energy deposit
   if (totalEdep > 0)
-    fPos /= totalEdep;
+    averagePosition /= totalEdep;
 
   G4AnalysisManager *man = G4AnalysisManager::Instance();
   man->FillNtupleDColumn(Tuples::kDetector, TDetector::kEdep, totalEdep / keV); // [keV]
-  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaX, fPos.getX() / mm); // [mm]
-  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaY, fPos.getY() / mm);
-  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaZ, fPos.getZ() / mm);
+  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaX, averagePosition.getX() / mm); // [mm]
+  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaY, averagePosition.getY() / mm);
+  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaZ, averagePosition.getZ() / mm);
   man->AddNtupleRow(Tuples::kDetector);
 }
