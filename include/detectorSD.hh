@@ -7,6 +7,7 @@
 #include "G4SDManager.hh"
 #include "G4SystemOfUnits.hh"
 #include "detectorHit.hh"
+#include "enums.hh"
 
 class MySensitiveDetector : public G4VSensitiveDetector
 {
