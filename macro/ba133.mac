@@ -13,13 +13,13 @@
 # Ba-133
 #/gps/particle ion
 #/gps/ion 56 133 0 0.
-/gps/particle gamma
-/gps/position 0 0 0 mm
-/gps/direction 0 0 1
+/gun/particle gamma
+/gun/position 0 0 0 mm
+/gun/direction 0 0 1
 #/gps/ang/type iso
 
 /control/alias energy 276
 /control/alias nEvents 1000
-/gps/energy {energy} keV
+/gun/energy {energy} keV
 /analysis/setFileName Ba133energy{energy}keV{nEvents}events.root
 /run/beamOn {nEvents}
