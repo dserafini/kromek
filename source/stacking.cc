@@ -27,7 +27,7 @@ G4ClassificationOfNewTrack MyStackingAction::ClassifyNewTrack(
 			aProcessName = aProcess->GetProcessName();
 		// G4cout << "from: " << aProcessName << G4endl;
 		
-		G4AnalysisManager *man = G4AnalysisManager::Instance();
+		// G4AnalysisManager *man = G4AnalysisManager::Instance();
 		
 		// particle is beta-
 		if(aTrack->GetDefinition() == G4Electron::Definition() && aProcessName == "RadioactiveDecayBase")
