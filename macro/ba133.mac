@@ -18,7 +18,7 @@
 /gun/direction 0 0 1
 #/gps/ang/type iso
 
-/control/alias energy 276
+/control/alias energy 276    
 /control/alias nEvents 100
 /gun/energy {energy} keV
 /analysis/setFileName Ba133energy{energy}keV{nEvents}events.root
