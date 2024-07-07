@@ -4,7 +4,6 @@
 namespace Tuples {
   enum {
     kEvents,
-    kGeneration,
     kDetector
   };
 }
