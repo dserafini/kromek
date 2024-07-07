@@ -13,7 +13,7 @@ MySensitiveDetector::~MySensitiveDetector() {}
 
 void MySensitiveDetector::Initialize(G4HCofThisEvent* hce)
 {
-  G4cout << "MySensitiveDetector::Initialize" << G4endl;
+  // G4cout << "MySensitiveDetector::Initialize" << G4endl;
   
   // Create hits collection
   fHitsCollection = new detectorHitsCollection(SensitiveDetectorName, collectionName[0]);
@@ -26,7 +26,10 @@ void MySensitiveDetector::Initialize(G4HCofThisEvent* hce)
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 G4bool MySensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory*)
 {
-  G4cout << "MySensitiveDetector::ProcessHits" << G4endl;
+  // G4cout << "MySensitiveDetector::ProcessHits" << G4endl;
+  // G4cout << "zPos: " << aStep->GetPreStepPoint()->GetPosition().getZ() << " mm";
+  // G4cout << "\teDep: " << aStep->GetTotalEnergyDeposit() << " keV";
+  // G4cout << "\t: " << aStep->GetTrack()->GetParticleDefinition()->GetParticleName() << G4endl;
   
   // energy deposit
   G4double edep = aStep->GetTotalEnergyDeposit(); // [keV]
@@ -47,7 +50,7 @@ G4bool MySensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory*)
 
 void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
 {
-  G4cout << "MySensitiveDetector::EndOfEvent" << G4endl;
+  // G4cout << "MySensitiveDetector::EndOfEvent" << G4endl;
   
   G4int nofHits = fHitsCollection->entries();
   if ( verboseLevel>1 ) {
@@ -69,12 +72,15 @@ void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
   
   // normalize fPosition on total energy deposit
   if (totalEdep > 0)
+  {
     averagePosition /= totalEdep;
 
-  G4AnalysisManager *man = G4AnalysisManager::Instance();
-  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kEdep, totalEdep / keV); // [keV]
-  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaX, averagePosition.getX() / mm); // [mm]
-  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaY, averagePosition.getY() / mm);
-  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaZ, averagePosition.getZ() / mm);
-  man->AddNtupleRow(Tuples::kDetector);
+    // save data in ntuples
+    G4AnalysisManager *man = G4AnalysisManager::Instance();
+    man->FillNtupleDColumn(Tuples::kDetector, TDetector::kEdep, totalEdep / keV); // [keV]
+    man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaX, averagePosition.getX() / mm); // [mm]
+    man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaY, averagePosition.getY() / mm);
+    man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaZ, averagePosition.getZ() / mm);
+    man->AddNtupleRow(Tuples::kDetector);
+  }
 }

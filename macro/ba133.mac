@@ -1,4 +1,4 @@
-/run/numberOfThreads 7
+/run/numberOfThreads 1
 
 #/analysis/ntuple/setActivation 5 True
 
@@ -18,8 +18,9 @@
 /gun/direction 0 0 1
 #/gps/ang/type iso
 
-/control/alias energy 276    
-/control/alias nEvents 100
+/control/alias energy 276
+/control/alias nEvents 100000
+/run/printProgress 10000
 /gun/energy {energy} keV
 /analysis/setFileName Ba133energy{energy}keV{nEvents}events.root
 /run/beamOn {nEvents}
