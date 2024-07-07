@@ -16,7 +16,9 @@ public:
 	~MySensitiveDetector();
 	void Initialize(G4HCofThisEvent* hitCollection) override;
 	void SetEdep(G4double de) { fEdep = de; };
+	void SetPosition(G4ThreeVector tp) { fPosition = tp; };
 	G4double GetEdep() const { return fEdep; };
+	G4ThreeVector GetPosition() const { return fPosition; };
 
 private:
 	G4bool ProcessHits(G4Step*, G4TouchableHistory*) override;
@@ -24,6 +26,7 @@ private:
 	
 	detectorHitsCollection* fHitsCollection;
 	G4double      fEdep = 0.;
+	G4double      fPosition = G4ThreeVector();
 };
 
 #endif
