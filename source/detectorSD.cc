@@ -62,5 +62,8 @@ void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
 
   G4AnalysisManager *man = G4AnalysisManager::Instance();
   man->FillNtupleDColumn(Tuples::kDetector, TDetector::kEdep, totalEdep / keV); // [keV]
+  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaX, fPosition.getX() / mm); // [mm]
+  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaY, fPosition.getY() / mm);
+  man->FillNtupleDColumn(Tuples::kDetector, TDetector::kGammaZ, fPosition.getZ() / mm);
   man->AddNtupleRow(Tuples::kDetector);
 }
