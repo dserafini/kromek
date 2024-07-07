@@ -36,6 +36,9 @@ G4bool MySensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory*)
 
   if (fHitsCollection)
     fHitsCollection->insert( newHit );
+
+  // step 
+  newHit->SetPosition(aStep->GetPreStepPoint()->GetPosition());
   
   return true;
 }
@@ -55,10 +58,20 @@ void MySensitiveDetector::EndOfEvent(G4HCofThisEvent*)
   }
 
   G4double totalEdep = 0.;
+  G4double partEdep = 0.;
+  G4ThreeVector totalStep = G4ThreeVector();
+  G4ThreeVector delta = aStep->GetPreStepPoint()->GetPosition() * edep;
+  fPosition += delta;
   for ( G4int i=0; i<nofHits; i++ )
   {
-    totalEdep += (*fHitsCollection)[i]->GetEdep();
+    partEdep = (*fHitsCollection)[i]->GetEdep();
+    totalEdep += partEdep;
+    totalStep += (*fHitsCollection)[i]->GetPosition() * partEdep;
   }
+  
+  // normalize fPosition on total energy deposit
+  if (totalEdep > 0)
+    fPosition /= totalEdep;
 
   G4AnalysisManager *man = G4AnalysisManager::Instance();
   man->FillNtupleDColumn(Tuples::kDetector, TDetector::kEdep, totalEdep / keV); // [keV]
