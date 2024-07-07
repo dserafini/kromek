@@ -26,7 +26,7 @@ private:
 	
 	detectorHitsCollection* fHitsCollection;
 	G4double      fEdep = 0.;
-	G4double      fPosition = G4ThreeVector();
+	G4ThreeVector      fPosition = G4ThreeVector();
 };
 
 #endif
