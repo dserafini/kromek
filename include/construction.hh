@@ -11,6 +11,7 @@
 #include "G4LogicalVolume.hh"
 #include "G4PVPlacement.hh"
 #include "detectorSD.hh"
+#include "G4VisAttributes.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -37,6 +38,7 @@ private:
 	G4Box *solidCztCase;
 	G4LogicalVolume *logicCztCase;
 	G4Material* materialCztCase;
+	G4double detectorWindowThickness;
 	// crystal
 	G4Box *solidCztCrystal;
 	G4LogicalVolume *logicCztCrystal;

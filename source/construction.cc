@@ -3,6 +3,7 @@
 MyDetectorConstruction::MyDetectorConstruction()
 {
 	G4cout << "MyDetectorConstruction::MyDetectorConstruction" << G4endl;
+	detectorWindowThickness = 0;
 }
 
 MyDetectorConstruction::~MyDetectorConstruction()
@@ -46,10 +47,12 @@ void MyDetectorConstruction::ConstructCzt()
 	solidCztCase = new G4Box('solidCztCase', cztCaseHalfXY, cztCaseHalfXY, cztCaseHalfZ);
 	logicCztCase = new G4LogicalVolume(solidCztCase, materialCztCase, 'logicCztCase', 0, 0, 0, true);
 	new G4PVPlacement(0, cztCasePosition, logicCztCase, "physCztCrystal", logicWorld, false, 0, true);
+	logicCztCase->SetVisAttributes(G4Color(1,1,1,.5));
 
 	// construct czt crystal
 	G4double cztCrystalHalfXYZ = .5 * cm;
-	G4ThreeVector cztCrystalPosition = G4ThreeVector(0, 0, -1 * cm);
+	detectorWindowThickness = 1 * mm;
+	G4ThreeVector cztCrystalPosition = G4ThreeVector(0, 0, cztCrystalHalfXYZ - cztCaseHalfZ + detectorWindowThickness);
 	solidCztCrystal = new G4Box('solidCztCrystal', cztCrystalHalfXYZ, cztCrystalHalfXYZ, cztCrystalHalfXYZ);
 	logicCztCrystal = new G4LogicalVolume(solidCztCrystal, materialCztCrystal, 'logicCztCrystal', 0, 0, 0, true);
 	new G4PVPlacement(0, cztCrystalPosition, logicCztCrystal, "physCztCrystal", logicCztCase, false, 0, true);
