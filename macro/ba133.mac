@@ -18,8 +18,22 @@
 /gun/direction 0 0 1
 #/gps/ang/type iso
 
-/control/alias nEvents 1000000
-/run/printProgress 100000
+/control/alias nEvents 100000000
+/run/printProgress 10000000
 /gun/energy 1 eV
+
 /analysis/setFileName Ba133_{nEvents}events.root
+/run/beamOn {nEvents}
+
+/gun/ion 63 152 0 0.
+/analysis/setFileName Eu152_{nEvents}events.root
+/run/beamOn {nEvents}
+
+/gun/ion 27 60 0 0.
+/analysis/setFileName Co60_{nEvents}events.root
+/run/beamOn {nEvents}
+
+/control/alias nEvents 1000000000
+/gun/ion 63 152 0 0.
+/analysis/setFileName Eu152_{nEvents}events.root
 /run/beamOn {nEvents}
