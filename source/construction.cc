@@ -3,11 +3,16 @@
 MyDetectorConstruction::MyDetectorConstruction()
 {
 	G4cout << "MyDetectorConstruction::MyDetectorConstruction" << G4endl;
-	detectorWindowThickness = 0;
+	detectorWindowThickness = 1 * mm;
+	crystalSide = 0.5 * cm;
+	fMessengerDetector = new G4GenericMessenger(this, "/detector/", "Detector construction");
+	fMessengerDetector->DeclarePropertyWithUnit("side", "mm", crystalSide, "Length of the collimator holes");
 }
 
 MyDetectorConstruction::~MyDetectorConstruction()
-{}
+{
+	delete fMessengerDetector;
+}
 
 // to define material only once
 void MyDetectorConstruction::DefineMaterials()
@@ -50,7 +55,11 @@ void MyDetectorConstruction::ConstructCzt()
 	logicCztCase->SetVisAttributes(G4Color(1,1,1,.5));
 
 	// construct czt crystal
-	G4double cztCrystalHalfXYZ = .5 * cm;
+	G4double cztCrystalHalfXYZ;
+	if ((crystalSide < .5 * cm) || (crystalSide > 1 * cm))
+		cztCrystalHalfXYZ = .5 * cm;
+	else
+		cztCrystalHalfXYZ = crystalSide / 2.;
 	detectorWindowThickness = 1 * mm;
 	G4ThreeVector cztCrystalPosition = G4ThreeVector(0, 0, cztCrystalHalfXYZ - cztCaseHalfZ + detectorWindowThickness);
 	solidCztCrystal = new G4Box('solidCztCrystal', cztCrystalHalfXYZ, cztCrystalHalfXYZ, cztCrystalHalfXYZ);

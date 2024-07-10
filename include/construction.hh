@@ -12,6 +12,7 @@
 #include "G4PVPlacement.hh"
 #include "detectorSD.hh"
 #include "G4VisAttributes.hh"
+#include "G4GenericMessenger.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -43,6 +44,9 @@ private:
 	G4Box *solidCztCrystal;
 	G4LogicalVolume *logicCztCrystal;
 	G4Material* materialCztCrystal;
+	// messenger
+	G4GenericMessenger *fMessengerDetector;
+	G4double crystalSide;
 
 	// flange
 	void ConstructFlange();
