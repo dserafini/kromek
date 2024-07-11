@@ -47,6 +47,7 @@ private:
 	// messenger
 	G4GenericMessenger *fMessengerDetector;
 	G4double crystalSide;
+	G4double cztWindowDistance;
 
 	// flange
 	void ConstructFlange();

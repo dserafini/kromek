@@ -11,22 +11,24 @@
 ################################################################################
 # choose gps source
 ################################################################################
-# Ba-133
 /gun/particle ion
-/gun/ion 56 133 0 0.
+# Ba-133
+#/gun/ion 56 133 0 0.
+# Eu-152
+/gun/ion 63 152 0 0.
 #/gun/particle gamma
 /gun/position 0 0 0 mm
 /gun/direction 0 0 1
 #/gps/ang/type iso
 
-/control/alias nEvents 100000000
-/run/printProgress 10000000
+/control/alias nEvents 10000000
+/run/printProgress 1000000
 /gun/energy 1 eV
 
-/analysis/setFileName Ba133_GR1{nEvents}events.root
+/analysis/setFileName Eu152GR1close_{nEvents}events.root
 /run/beamOn {nEvents}
 
-/detector/side 1 cm
+/detector/side .5 cm
 /run/reinitializeGeometry
-/analysis/setFileName Eu152_GR05{nEvents}events.root
+/analysis/setFileName Eu152GR05close_{nEvents}events.root
 /run/beamOn {nEvents}

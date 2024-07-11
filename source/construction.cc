@@ -5,8 +5,10 @@ MyDetectorConstruction::MyDetectorConstruction()
 	G4cout << "MyDetectorConstruction::MyDetectorConstruction" << G4endl;
 	detectorWindowThickness = 1 * mm;
 	crystalSide = 0.5 * cm;
+	cztWindowDistance = 1 * cm;
 	fMessengerDetector = new G4GenericMessenger(this, "/detector/", "Detector construction");
-	fMessengerDetector->DeclarePropertyWithUnit("side", "mm", crystalSide, "Length of the collimator holes");
+	fMessengerDetector->DeclarePropertyWithUnit("side", "mm", crystalSide, "Side of the CZT crystal");
+	fMessengerDetector->DeclarePropertyWithUnit("windowPosition", "mm", cztWindowDistance, "Distance detector window - source");
 }
 
 MyDetectorConstruction::~MyDetectorConstruction()
@@ -47,7 +49,6 @@ void MyDetectorConstruction::ConstructCzt()
 	// construct kromek czt case
 	G4double cztCaseHalfXY = .7 * cm;
 	G4double cztCaseHalfZ = 3 * cm;
-	G4double cztWindowDistance = 9 * cm;
 	G4ThreeVector cztCasePosition = G4ThreeVector(0, 0, cztWindowDistance + cztCaseHalfZ);
 	solidCztCase = new G4Box('solidCztCase', cztCaseHalfXY, cztCaseHalfXY, cztCaseHalfZ);
 	logicCztCase = new G4LogicalVolume(solidCztCase, materialCztCase, 'logicCztCase', 0, 0, 0, true);
@@ -100,7 +101,7 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 	
 	ConstructCzt();
 	
-	ConstructFlange();
+	// ConstructFlange();
 
 	ConstructSource();
 	
