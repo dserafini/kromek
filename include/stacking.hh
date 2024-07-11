@@ -4,6 +4,7 @@
 #include "globals.hh"
 #include "g4root.hh"
 #include "G4UserStackingAction.hh"
+#include "G4Track.hh"
 #include "G4Gamma.hh"
 
 class MyStackingAction : public G4UserStackingAction
