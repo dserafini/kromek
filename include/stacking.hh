@@ -4,14 +4,7 @@
 #include "globals.hh"
 #include "g4root.hh"
 #include "G4UserStackingAction.hh"
-#include "G4Track.hh"
-#include "G4Electron.hh"
-#include "G4AntiNeutrinoE.hh"
 #include "G4Gamma.hh"
-#include "G4OpticalPhoton.hh"
-#include "G4SystemOfUnits.hh"
-#include "G4VProcess.hh"
-#include "enums.hh"
 
 class MyStackingAction : public G4UserStackingAction
 {
