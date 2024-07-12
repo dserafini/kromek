@@ -1,5 +1,5 @@
-/run/numberOfThreads 7
-/detector/side 1 cm
+/run/numberOfThreads 1
+/control/macroPath macro
+/detector/side .5 cm
 # looping macro
-# columns value from 10 to 100 with 10 step
-/control/loop scandet.mac gammaEnergy 100 1000 100
+/control/loop scandet.mac gammaEnergy 2100 3000 200

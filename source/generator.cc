@@ -13,6 +13,12 @@ MyPrimaryGenerator::MyPrimaryGenerator()
 	fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
 	fParticleGun->SetParticlePosition(G4ThreeVector(0.,0.,0.));
 	fParticleGun->SetParticleEnergy(0. * eV);
+
+	// default particle kinematic
+	fParticleGps->SetParticleDefinition(particle);
+	fParticleGps->GetCurrentSource()->GetEneDist()->SetMonoEnergy(1.0 * MeV);
+	fParticleGps->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0.0, 0.0, 0.0));
+    fParticleGps->GetCurrentSource()->GetAngDist()->SetParticleMomentumDirection(G4ThreeVector(0.0, 0.0, 1.0));
 }
 
 MyPrimaryGenerator::~MyPrimaryGenerator()
