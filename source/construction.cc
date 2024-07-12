@@ -5,7 +5,7 @@ MyDetectorConstruction::MyDetectorConstruction()
 	G4cout << "MyDetectorConstruction::MyDetectorConstruction" << G4endl;
 	detectorWindowThickness = 1 * mm;
 	crystalSide = 0.5 * cm;
-	cztWindowDistance = 1 * cm;
+	cztWindowDistance = 10 * cm;
 	fMessengerDetector = new G4GenericMessenger(this, "/detector/", "Detector construction");
 	fMessengerDetector->DeclarePropertyWithUnit("side", "mm", crystalSide, "Side of the CZT crystal");
 	fMessengerDetector->DeclarePropertyWithUnit("windowPosition", "mm", cztWindowDistance, "Distance detector window - source");
@@ -29,8 +29,7 @@ void MyDetectorConstruction::DefineMaterials()
 	materialAl->AddElement(nist->FindOrBuildElement("Al"), 1);
 
 	// material czt case
-	// materialCztCase = (G4Material*) materialAl;
-	materialCztCase = (G4Material*) materialAir;
+	materialCztCase = (G4Material*) materialAl;
 
 	// material czt crystal
 	materialCztCrystal = new G4Material("czt",  5.605 * g/cm3, 3);
@@ -102,7 +101,7 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 	
 	ConstructCzt();
 	
-	// ConstructFlange();
+	ConstructFlange();
 
 	ConstructSource();
 	
