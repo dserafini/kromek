@@ -1,6 +1,18 @@
-/detector/nCols {cols}
+#/analysis/ntuple/setActivation 5 True
 
-/run/reinitializeGeometry
-# he does not advise to add the parameter true since destrying all the previous geometry can lead to problems
+# initalize if not done in the main
+/run/initialize
 
-/run/beamOn 100
+################################################################################
+# choose gps source
+################################################################################
+/gps/particle gamma
+/gps/pos/type Plane
+#/gps/ang/type iso
+
+/control/alias nEvents 100000
+/run/printProgress 10000
+/gun/energy {gammaEnergy} eV
+
+/analysis/setFileName gamma{gammaEnergy}keVGR1close_{nEvents}events.root
+/run/beamOn {nEvents}

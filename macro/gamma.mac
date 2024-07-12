@@ -1,93 +1,30 @@
+/run/numberOfThreads 7
 
-################################################################################
-# define scintillator
-################################################################################
+#/analysis/ntuple/setActivation 5 True
 
-/scintillator/slab_side 10. cm
-/scintillator/slab_depth 3. cm
-
-################################################################################
-# define collimator
-################################################################################
-
-/collimator/exist true
-/collimator/case_side 10. cm
-/collimator/hole_length 30. mm
-/collimator/septa_thickness 1. mm
-/collimator/hole_thickness 2. mm
-
+/detector/side 1 cm
 /run/reinitializeGeometry
 
+# initalize if not done in the main
 /run/initialize
 
 ################################################################################
-# define primary
+# choose gps source
 ################################################################################
+/gun/particle gamma
+/gun/position 0 0 0 mm
+/gun/direction 0 0 1
+#/gps/ang/type iso
 
-/gps/particle gamma
-/gps/energy 342 keV
-/gps/position 0 0 -10. cm
-# /gps/direction 0 0 1
-/gps/ang/type iso
-/analysis/setFileName discard.root
-/run/beamOn 1
-# devo lanciare il primo evento che ha l'energia sbagliata
-/run/printProgress 10000000
+/control/alias nEvents 100000
+/run/printProgress 10000
+/control/alias gammaEnergy 1000
+/gun/energy {gammaEnergy} eV
 
-################################################################################
-# runs
-################################################################################
+/analysis/setFileName gamma{gammaEnergy}keVGR1close_{nEvents}events.root
+/run/beamOn {nEvents}
 
-/analysis/setFileName septa0p8mmHole2p0mm100Mevents.root
-/collimator/septa_thickness 0.8 mm
-/collimator/hole_thickness 2. mm
+/detector/side .5 cm
 /run/reinitializeGeometry
-/run/beamOn 100000000
-
-/analysis/setFileName septa0p8mmHole2p2mm100Mevents.root
-/collimator/septa_thickness 0.8 mm
-/collimator/hole_thickness 2.2 mm
-/run/reinitializeGeometry
-/run/beamOn 100000000
-
-/analysis/setFileName septa1p0mmHole2p0mm100Mevents.root
-/collimator/septa_thickness 1.0 mm
-/collimator/hole_thickness 2. mm
-/run/reinitializeGeometry
-/run/beamOn 100000000
-
-/analysis/setFileName septa1p2mmHole2p0mm100Mevents.root
-/collimator/septa_thickness 1.2 mm
-/collimator/hole_thickness 2. mm
-/run/reinitializeGeometry
-/run/beamOn 100000000
-
-/analysis/setFileName septa1p2mmHole1p8mm100Mevents.root
-/collimator/septa_thickness 1.2 mm
-/collimator/hole_thickness 1.8 mm
-/run/reinitializeGeometry
-/run/beamOn 100000000
-
-/analysis/setFileName septa1p4mmHole2p0mm100Mevents.root
-/collimator/septa_thickness 1.4 mm
-/collimator/hole_thickness 2. mm
-/run/reinitializeGeometry
-/run/beamOn 100000000
-
-/analysis/setFileName septa1p4mmHole1p6mm100Mevents.root
-/collimator/septa_thickness 1.4 mm
-/collimator/hole_thickness 1.6 mm
-/run/reinitializeGeometry
-/run/beamOn 100000000
-
-/analysis/setFileName septa2p0mmHole2p0mm100Mevents.root
-/collimator/septa_thickness 2. mm
-/collimator/hole_thickness 2. mm
-/run/reinitializeGeometry
-/run/beamOn 100000000
-
-/analysis/setFileName septa2p0mmHole1p0mm100Mevents.root
-/collimator/septa_thickness 2. mm
-/collimator/hole_thickness 1. mm
-/run/reinitializeGeometry
-/run/beamOn 100000000
+/analysis/setFileName gamma{gammaEnergy}keVGR05close_{nEvents}events.root
+/run/beamOn {nEvents}

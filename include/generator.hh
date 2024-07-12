@@ -26,6 +26,7 @@ public:
 
 private:
 	G4ParticleGun *fParticleGun;
+	G4GeneralParticleSource *fParticleGps;
 };
 
 #endif

@@ -4,6 +4,7 @@ MyPrimaryGenerator::MyPrimaryGenerator()
 {
 	G4cout << "MyPrimaryGenerator::MyPrimaryGenerator" << G4endl;
 	fParticleGun = new G4ParticleGun();
+	fParticleGps = new G4GeneralParticleSource();
 
 	// default particle kinematic
 	G4ParticleTable *particleTable = G4ParticleTable::GetParticleTable();
@@ -17,6 +18,7 @@ MyPrimaryGenerator::MyPrimaryGenerator()
 MyPrimaryGenerator::~MyPrimaryGenerator()
 {
 	delete fParticleGun;
+	delete fParticleGps;
 }
 
 void MyPrimaryGenerator::GeneratePrimaries(G4Event *anEvent)
@@ -36,5 +38,5 @@ void MyPrimaryGenerator::GeneratePrimaries(G4Event *anEvent)
 		fParticleGun->SetParticleCharge(charge);
 	}
 
-	fParticleGun->GeneratePrimaryVertex(anEvent);
+	fParticleGps->GeneratePrimaryVertex(anEvent);
 }
