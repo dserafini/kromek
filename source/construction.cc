@@ -29,7 +29,8 @@ void MyDetectorConstruction::DefineMaterials()
 	materialAl->AddElement(nist->FindOrBuildElement("Al"), 1);
 
 	// material czt case
-	materialCztCase = (G4Material*) materialAl;
+	// materialCztCase = (G4Material*) materialAl;
+	materialCztCase = (G4Material*) materialAir;
 
 	// material czt crystal
 	materialCztCrystal = new G4Material("czt",  5.605 * g/cm3, 3);
