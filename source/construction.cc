@@ -52,7 +52,7 @@ void MyDetectorConstruction::ConstructCzt()
 	G4ThreeVector cztCasePosition = G4ThreeVector(0, 0, cztWindowDistance + cztCaseHalfZ);
 	solidCztCase = new G4Box('solidCztCase', cztCaseHalfXY, cztCaseHalfXY, cztCaseHalfZ);
 	logicCztCase = new G4LogicalVolume(solidCztCase, materialCztCase, 'logicCztCase', 0, 0, 0, true);
-	new G4PVPlacement(0, cztCasePosition, logicCztCase, "physCztCrystal", logicWorld, false, 0, true);
+	new G4PVPlacement(0, cztCasePosition, logicCztCase, "physCztCase", logicWorld, false, 0, true);
 	logicCztCase->SetVisAttributes(G4Color(1,1,1,.5));
 
 	// construct czt crystal
